@@ -1,0 +1,42 @@
+{
+    "claudeCode.environmentVariables": [
+                {
+            "name": "ANTHROPIC_BASE_URL",
+        "value": "https://api.minimax.io/anthropic"
+        },
+        {
+            "name": "ANTHROPIC_AUTH_TOKEN",
+            "value": "sk-cp-y6SZD8ES_uGb1Vrf4gsImBVwYsrHWEJLVIiizqXlXPU0IefCd3jMNnhNY4Fey14vRTKLMdUjv2Hn152aPO24MCtN26dnKJClEBpD5R4WNaXIO7T6HbQRpug"
+        },
+        {
+            "name": "API_TIMEOUT_MS",
+            "value": "3000000"
+        },
+        {
+            "name": "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC",
+            "value": "1"
+        },
+        {
+            "name": "ANTHROPIC_MODEL",
+            "value": "MiniMax-M2.7"
+        },
+        {
+            "name": "ANTHROPIC_SMALL_FAST_MODEL",
+            "value": "MiniMax-M2.7"
+        },
+        {
+            "name": "ANTHROPIC_DEFAULT_SONNET_MODEL",
+            "value": "MiniMax-M2.7"
+        },
+        {
+            "name": "ANTHROPIC_DEFAULT_OPUS_MODEL",
+            "value": "MiniMax-M2.7"
+        },
+        {
+            "name": "ANTHROPIC_DEFAULT_HAIKU_MODEL",
+            "value": "MiniMax-M2.7"
+        }
+    ],
+    "claudeCode.preferredLocation": "panel",
+    "claudeCode.selectedModel": "minimax-m2.7",
+}

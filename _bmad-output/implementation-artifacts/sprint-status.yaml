@@ -1,0 +1,99 @@
+# generated: 2026-04-20
+# last_updated: 2026-04-20
+# project: RetrivAI
+# project_key: NOKEY
+# tracking_system: file-system
+# story_location: implementation_artifacts
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic Status:
+#   - backlog: Epic not yet started
+#   - in-progress: Epic actively being worked on
+#   - done: All stories in epic completed
+#
+# Story Status:
+#   - backlog: Story only exists in epic file
+#   - ready-for-dev: Story file created in stories folder
+#   - in-progress: Developer actively working on implementation
+#   - review: Ready for code review
+#   - done: Story completed
+#
+# Retrospective Status:
+#   - optional: Can be completed but not required
+#   - done: Retrospective has been completed
+
+generated: 2026-04-20
+last_updated: 2026-04-20
+project: RetrivAI
+project_key: NOKEY
+tracking_system: file-system
+story_location: implementation_artifacts
+
+development_status:
+  # Epic 1: Photo & Video Library Access
+  epic-1: in-progress
+  1-1-photo-permission-grant: backlog
+  1-2-photo-grid-view: backlog
+  1-3-full-screen-photo-view: backlog
+  1-4-photo-sharing: backlog
+  1-5-video-grid-view-playback: backlog
+  1-6-video-sharing: backlog
+  epic-1-retrospective: optional
+
+  # Epic 2: On-Device AI Indexing
+  epic-2: backlog
+  2-1-background-photo-indexing: backlog
+  2-2-photo-tagging-with-ai: backlog
+  2-3-video-tagging-with-ai: backlog
+  2-4-face-recognition: backlog
+  2-5-indexing-progress-display: backlog
+  2-6-indexing-configuration: backlog
+  epic-2-retrospective: optional
+
+  # Epic 3: Natural Language Semantic Search
+  epic-3: backlog
+  3-1-natural-language-search-input: backlog
+  3-2-semantic-search-results: backlog
+  3-3-search-by-person-or-pet-name: backlog
+  3-4-search-results-with-relevance-indicator: backlog
+  epic-3-retrospective: optional
+
+  # Epic 4: Face & Object Recognition & Naming
+  epic-4: backlog
+  4-1-name-identified-faces: backlog
+  4-2-name-identified-pets-and-objects: backlog
+  4-3-manage-named-people-and-pets: backlog
+  epic-4-retrospective: optional
+
+  # Epic 5: Album Organization & Discovery
+  epic-5: backlog
+  5-1-ai-suggested-albums: backlog
+  5-2-view-system-albums: backlog
+  5-3-browse-by-people-places-events: backlog
+  epic-5-retrospective: optional
+
+  # Epic 6: Privacy Dashboard & Verification
+  epic-6: backlog
+  6-1-privacy-dashboard-display: backlog
+  6-2-real-time-cloud-call-counter: backlog
+  6-3-on-device-processing-only: backlog
+  epic-6-retrospective: optional
+
+  # Epic 7: Adaptive Model Management
+  epic-7: backlog
+  7-1-device-ram-detection: backlog
+  7-2-automatic-model-selection: backlog
+  7-3-manual-model-switching: backlog
+  7-4-model-download-management: backlog
+  epic-7-retrospective: optional
+
+  # Epic 8: Settings & Customization
+  epic-8: backlog
+  8-1-default-search-model-configuration: backlog
+  8-2-auto-album-suggestions-toggle: backlog
+  8-3-grid-view-density-customization: backlog
+  8-4-clear-ai-index-and-re-index: backlog
+  8-5-notification-preferences: backlog
+  8-6-face-recognition-toggle: backlog
+  epic-8-retrospective: optional

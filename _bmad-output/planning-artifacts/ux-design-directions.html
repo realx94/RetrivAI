@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RetrivAI - Design Direction Mockups</title>
+    <style>
+        :root {
+            --primary: #1A73E8;
+            --secondary: #34A853;
+            --background: #FFFFFF;
+            --surface: #F8F9FA;
+            --text-primary: #202124;
+            --text-secondary: #5F6368;
+            --error: #EA4335;
+            --divider: #E8EAED;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1a1a2e;
+            color: white;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 30px;
+        }
+        .directions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .direction-card {
+            background: #16213e;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .direction-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        }
+        .mockup-container {
+            aspect-ratio: 9/19;
+            background: var(--background);
+            position: relative;
+            overflow: hidden;
+        }
+        .mockup-header {
+            padding: 12px 16px;
+            background: var(--primary);
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .direction-label {
+            padding: 16px;
+            background: #16213e;
+        }
+        .direction-label h3 {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+        .direction-label p {
+            font-size: 12px;
+            color: #888;
+        }
+        /* Direction 1: Classic Grid */
+        .dir1 .search-bar {
+            margin: 12px 16px;
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .dir1 .search-bar span {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        .dir1 .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            padding: 0 4px;
+        }
+        .dir1 .grid-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .dir1 .nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            background: white;
+            border-top: 1px solid var(--divider);
+            padding: 8px 0;
+        }
+        .dir1 .nav-item {
+            flex: 1;
+            text-align: center;
+            font-size: 10px;
+            color: var(--text-secondary);
+        }
+        .dir1 .nav-item.active {
+            color: var(--primary);
+        }
+        /* Direction 2: Focus Search */
+        .dir2 .top-section {
+            background: var(--primary);
+            padding: 40px 16px 60px;
+            text-align: center;
+        }
+        .dir2 .top-section h2 {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+        .dir2 .search-box {
+            background: white;
+            border-radius: 28px;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        .dir2 .search-box span {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        .dir2 .content {
+            margin-top: -40px;
+            padding: 0 16px;
+        }
+        .dir2 .results-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        .dir2 .results-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .dir2 .nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            background: white;
+            border-top: 1px solid var(--divider);
+            padding: 8px 0;
+        }
+        .dir2 .nav-item {
+            flex: 1;
+            text-align: center;
+            font-size: 10px;
+            color: var(--text-secondary);
+        }
+        .dir2 .nav-item.active {
+            color: var(--primary);
+        }
+        /* Direction 3: Card-Based */
+        .dir3 .header {
+            background: white;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--divider);
+        }
+        .dir3 .header h2 {
+            font-size: 20px;
+            color: var(--primary);
+        }
+        .dir3 .header-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--surface);
+            border-radius: 50%;
+        }
+        .dir3 .search-strip {
+            margin: 12px 16px;
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .dir3 .search-strip span {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+        .dir3 .cards {
+            padding: 8px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .dir3 .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .dir3 .card-image {
+            height: 120px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        .dir3 .card-content {
+            padding: 12px;
+        }
+        .dir3 .card-title {
+            font-size: 14px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+        .dir3 .card-meta {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+        .dir3 .nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            background: white;
+            border-top: 1px solid var(--divider);
+            padding: 8px 0;
+        }
+        .dir3 .nav-item {
+            flex: 1;
+            text-align: center;
+            font-size: 10px;
+            color: var(--text-secondary);
+        }
+        .dir3 .nav-item.active {
+            color: var(--primary);
+        }
+        /* Direction 4: Minimal Dark */
+        .dir4 {
+            background: #121212;
+        }
+        .dir4 .mockup-container {
+            background: #121212;
+        }
+        .dir4 .mockup-header {
+            background: #121212;
+        }
+        .dir4 .search-bar {
+            margin: 12px 16px;
+            background: #1e1e1e;
+            border-radius: 24px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .dir4 .search-bar span {
+            color: #888;
+            font-size: 14px;
+        }
+        .dir4 .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            padding: 0 4px;
+        }
+        .dir4 .grid-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+        }
+        .dir4 .nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            background: #1e1e1e;
+            padding: 8px 0;
+        }
+        .dir4 .nav-item {
+            flex: 1;
+            text-align: center;
+            font-size: 10px;
+            color: #666;
+        }
+        .dir4 .nav-item.active {
+            color: var(--primary);
+        }
+        /* Direction 5: Privacy Focus */
+        .dir5 .mockup-container {
+            background: linear-gradient(180deg, #E8F5E9 0%, #FFFFFF 100%);
+        }
+        .dir5 .mockup-header {
+            background: var(--secondary);
+        }
+        .dir5 .privacy-badge {
+            position: absolute;
+            top: 60px;
+            left: 16px;
+            right: 16px;
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .dir5 .privacy-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+        .dir5 .privacy-text h4 {
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+        .dir5 .privacy-text p {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        .dir5 .search-bar {
+            margin: 16px;
+            background: white;
+            border-radius: 24px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .dir5 .search-bar span {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        .dir5 .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            padding: 0 4px;
+        }
+        .dir5 .grid-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+        .dir5 .nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            background: white;
+            border-top: 1px solid var(--divider);
+            padding: 8px 0;
+        }
+        .dir5 .nav-item {
+            flex: 1;
+            text-align: center;
+            font-size: 10px;
+            color: var(--text-secondary);
+        }
+        .dir5 .nav-item.active {
+            color: var(--secondary);
+        }
+        /* Direction 6: Face-Centric */
+        .dir6 .mockup-container {
+            background: var(--surface);
+        }
+        .dir6 .mockup-header {
+            background: white;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--divider);
+        }
+        .dir6 .section-title {
+            padding: 16px 16px 8px;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .dir6 .faces-row {
+            display: flex;
+            gap: 12px;
+            padding: 0 16px;
+            overflow-x: auto;
+        }
+        .dir6 .face-circle {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            flex-shrink: 0;
+        }
+        .dir6 .face-circle span {
+            display: block;
+            text-align: center;
+            padding-top: 40px;
+            font-size: 10px;
+            color: var(--text-secondary);
+        }
+        .dir6 .search-bar {
+            margin: 12px 16px;
+            background: white;
+            border-radius: 24px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .dir6 .search-bar span {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        .dir6 .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            padding: 0 4px;
+        }
+        .dir6 .grid-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .dir6 .nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            background: white;
+            border-top: 1px solid var(--divider);
+            padding: 8px 0;
+        }
+        .dir6 .nav-item {
+            flex: 1;
+            text-align: center;
+            font-size: 10px;
+            color: var(--text-secondary);
+        }
+        .dir6 .nav-item.active {
+            color: var(--primary);
+        }
+        /* Direction 7: Album Focus */
+        .dir7 .mockup-container {
+            background: white;
+        }
+        .dir7 .mockup-header {
+            background: white;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--divider);
+            display: flex;
+            justify-content: space-between;
+        }
+        .dir7 .albums-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            padding: 12px 16px;
+        }
+        .dir7 .album-card {
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--surface);
+        }
+        .dir7 .album-cover {
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .dir7 .album-info {
+            padding: 8px;
+        }
+        .dir7 .album-title {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        .dir7 .album-count {
+            font-size: 10px;
+            color: var(--text-secondary);
+        }
+        .dir7 .search-bar {
+            margin: 0 16px 12px;
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .dir7 .search-bar span {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+        .dir7 .nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            background: white;
+            border-top: 1px solid var(--divider);
+            padding: 8px 0;
+        }
+        .dir7 .nav-item {
+            flex: 1;
+            text-align: center;
+            font-size: 10px;
+            color: var(--text-secondary);
+        }
+        .dir7 .nav-item.active {
+            color: var(--primary);
+        }
+        .instructions {
+            max-width: 800px;
+            margin: 40px auto;
+            background: #16213e;
+            border-radius: 16px;
+            padding: 24px;
+        }
+        .instructions h2 {
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+        .instructions ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .instructions li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        .instructions li span {
+            color: var(--primary);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>RetrivAI - Design Direction Mockups</h1>
+    <p class="subtitle">Explore 7 visual directions for the privacy-first photo search app</p>
+
+    <div class="directions-grid">
+        <!-- Direction 1: Classic Grid -->
+        <div class="direction-card dir1">
+            <div class="mockup-container">
+                <div class="mockup-header">RetrivAI</div>
+                <div class="search-bar">
+                    <span>🔍 Search your photos...</span>
+                </div>
+                <div class="grid">
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                </div>
+                <div class="nav">
+                    <div class="nav-item active">📷 Gallery</div>
+                    <div class="nav-item">🔍 Search</div>
+                    <div class="nav-item">📁 Albums</div>
+                    <div class="nav-item">⚙️ Settings</div>
+                </div>
+            </div>
+            <div class="direction-label">
+                <h3>Direction 1: Classic Grid</h3>
+                <p>Familiar photo app layout with top search bar and 3-column grid. Google Photos inspired.</p>
+            </div>
+        </div>
+
+        <!-- Direction 2: Focus Search -->
+        <div class="direction-card dir2">
+            <div class="mockup-container">
+                <div class="top-section">
+                    <h2>Find your memories</h2>
+                    <div class="search-box">
+                        <span>🔍 Type to search...</span>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="results-grid">
+                        <div class="results-item"></div>
+                        <div class="results-item"></div>
+                        <div class="results-item"></div>
+                        <div class="results-item"></div>
+                        <div class="results-item"></div>
+                        <div class="results-item"></div>
+                    </div>
+                </div>
+                <div class="nav">
+                    <div class="nav-item">📷 Gallery</div>
+                    <div class="nav-item active">🔍 Search</div>
+                    <div class="nav-item">📁 Albums</div>
+                    <div class="nav-item">⚙️ Settings</div>
+                </div>
+            </div>
+            <div class="direction-label">
+                <h3>Direction 2: Focus Search</h3>
+                <p>Hero search experience with prominent search bar. Siri-inspired minimal design.</p>
+            </div>
+        </div>
+
+        <!-- Direction 3: Card-Based -->
+        <div class="direction-card dir3">
+            <div class="mockup-container">
+                <div class="header">
+                    <h2>RetrivAI</h2>
+                    <div class="header-icon"></div>
+                </div>
+                <div class="search-strip">
+                    <span>🔍 Search...</span>
+                </div>
+                <div class="cards">
+                    <div class="card">
+                        <div class="card-image"></div>
+                        <div class="card-content">
+                            <div class="card-title">Beach Day with Max</div>
+                            <div class="card-meta">12 photos • Last week</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav">
+                    <div class="nav-item active">📷 Gallery</div>
+                    <div class="nav-item">🔍 Search</div>
+                    <div class="nav-item">📁 Albums</div>
+                    <div class="nav-item">⚙️ Settings</div>
+                </div>
+            </div>
+            <div class="direction-label">
+                <h3>Direction 3: Card-Based</h3>
+                <p>Content-first cards showing AI-organized albums. Pinterest-inspired discovery.</p>
+            </div>
+        </div>
+
+        <!-- Direction 4: Minimal Dark -->
+        <div class="direction-card dir4">
+            <div class="mockup-container">
+                <div class="mockup-header">RetrivAI</div>
+                <div class="search-bar">
+                    <span>🔍 Search...</span>
+                </div>
+                <div class="grid">
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                </div>
+                <div class="nav">
+                    <div class="nav-item active">📷</div>
+                    <div class="nav-item">🔍</div>
+                    <div class="nav-item">📁</div>
+                    <div class="nav-item">⚙️</div>
+                </div>
+            </div>
+            <div class="direction-label">
+                <h3>Direction 4: Minimal Dark</h3>
+                <p>Dark mode aesthetic with maximum content focus. Apple-inspired elegance.</p>
+            </div>
+        </div>
+
+        <!-- Direction 5: Privacy Focus -->
+        <div class="direction-card dir5">
+            <div class="mockup-container">
+                <div class="mockup-header">RetrivAI</div>
+                <div class="privacy-badge">
+                    <div class="privacy-icon">🛡️</div>
+                    <div class="privacy-text">
+                        <h4>0 Cloud Calls</h4>
+                        <p>Your photos never leave this device</p>
+                    </div>
+                </div>
+                <div class="search-bar">
+                    <span>🔍 Search your photos...</span>
+                </div>
+                <div class="grid">
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                </div>
+                <div class="nav">
+                    <div class="nav-item">📷 Gallery</div>
+                    <div class="nav-item">🔍 Search</div>
+                    <div class="nav-item">📁 Albums</div>
+                    <div class="nav-item active">🛡️ Privacy</div>
+                </div>
+            </div>
+            <div class="direction-label">
+                <h3>Direction 5: Privacy Focus</h3>
+                <p>Privacy Dashboard prominent. Green/calm aesthetic. Trust-first approach.</p>
+            </div>
+        </div>
+
+        <!-- Direction 6: Face-Centric -->
+        <div class="direction-card dir6">
+            <div class="mockup-container">
+                <div class="mockup-header">RetrivAI</div>
+                <div class="section-title">People</div>
+                <div class="faces-row">
+                    <div class="face-circle"><span>Mom</span></div>
+                    <div class="face-circle"><span>Dad</span></div>
+                    <div class="face-circle"><span>Max</span></div>
+                    <div class="face-circle"><span>Sister</span></div>
+                </div>
+                <div class="section-title" style="padding-top: 20px;">Recent</div>
+                <div class="search-bar">
+                    <span>🔍 Search...</span>
+                </div>
+                <div class="grid">
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                </div>
+                <div class="nav">
+                    <div class="nav-item active">📷 Gallery</div>
+                    <div class="nav-item">🔍 Search</div>
+                    <div class="nav-item">📁 Albums</div>
+                    <div class="nav-item">⚙️ Settings</div>
+                </div>
+            </div>
+            <div class="direction-label">
+                <h3>Direction 6: Face-Centric</h3>
+                <p>People-first navigation with face circles. Apple Photos face recognition inspired.</p>
+            </div>
+        </div>
+
+        <!-- Direction 7: Album Focus -->
+        <div class="direction-card dir7">
+            <div class="mockup-container">
+                <div class="mockup-header">
+                    <span>Albums</span>
+                    <span>👤</span>
+                </div>
+                <div class="search-bar">
+                    <span>🔍 Search albums...</span>
+                </div>
+                <div class="albums-grid">
+                    <div class="album-card">
+                        <div class="album-cover"></div>
+                        <div class="album-info">
+                            <div class="album-title">Beach Day</div>
+                            <div class="album-count">24 photos</div>
+                        </div>
+                    </div>
+                    <div class="album-card">
+                        <div class="album-cover" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                        <div class="album-info">
+                            <div class="album-title">Birthday Party</div>
+                            <div class="album-count">18 photos</div>
+                        </div>
+                    </div>
+                    <div class="album-card">
+                        <div class="album-cover" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                        <div class="album-info">
+                            <div class="album-title">With Family</div>
+                            <div class="album-count">42 photos</div>
+                        </div>
+                    </div>
+                    <div class="album-card">
+                        <div class="album-cover" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
+                        <div class="album-info">
+                            <div class="album-title">Travels</div>
+                            <div class="album-count">67 photos</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav">
+                    <div class="nav-item">📷 Gallery</div>
+                    <div class="nav-item">🔍 Search</div>
+                    <div class="nav-item active">📁 Albums</div>
+                    <div class="nav-item">⚙️ Settings</div>
+                </div>
+            </div>
+            <div class="direction-label">
+                <h3>Direction 7: Album Focus</h3>
+                <p>Albums-first with grid of AI-organized albums. Pinterest board-inspired.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="instructions">
+        <h2>Evaluation Criteria</h2>
+        <ul>
+            <li><span>✓</span> <strong>Layout Intuitiveness</strong> - Which information hierarchy matches your priorities?</li>
+            <li><span>✓</span> <strong>Interaction Style</strong> - Which interaction style fits your core experience?</li>
+            <li><span>✓</span> <strong>Visual Weight</strong> - Which visual density feels right for your brand?</li>
+            <li><span>✓</span> <strong>Navigation Approach</strong> - Which navigation pattern matches user expectations?</li>
+            <li><span>✓</span> <strong>Privacy Emphasis</strong> - Does it reinforce the privacy-first value proposition?</li>
+            <li><span>✓</span> <strong>Core Experience</strong> - Does it support "search by describing what you remember"?</li>
+        </ul>
+    </div>
+</body>
+</html>

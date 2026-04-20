@@ -1,0 +1,35 @@
+installation:
+  version: 6.3.0
+  installDate: 2026-04-20T02:00:26.342Z
+  lastUpdated: 2026-04-20T02:00:26.342Z
+modules:
+  - name: core
+    version: 6.3.0
+    installDate: 2026-04-20T02:00:11.252Z
+    lastUpdated: 2026-04-20T02:00:26.096Z
+    source: built-in
+    npmPackage: null
+    repoUrl: null
+  - name: bmm
+    version: 6.3.0
+    installDate: 2026-04-20T02:00:11.756Z
+    lastUpdated: 2026-04-20T02:00:26.097Z
+    source: built-in
+    npmPackage: null
+    repoUrl: null
+  - name: bmb
+    version: 1.5.0
+    installDate: 2026-04-20T02:00:13.850Z
+    lastUpdated: 2026-04-20T02:00:26.245Z
+    source: external
+    npmPackage: bmad-builder
+    repoUrl: https://github.com/bmad-code-org/bmad-builder
+  - name: wds
+    version: 0.1.0
+    installDate: 2026-04-20T02:00:19.425Z
+    lastUpdated: 2026-04-20T02:00:26.342Z
+    source: community
+    npmPackage: bmad-method-wds-expansion
+    repoUrl: https://github.com/bmad-code-org/bmad-method-wds-expansion
+ides:
+  - claude-code
