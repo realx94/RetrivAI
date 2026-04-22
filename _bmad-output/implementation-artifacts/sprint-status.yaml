@@ -33,9 +33,9 @@ story_location: implementation_artifacts
 development_status:
   # Epic 1: Photo & Video Library Access
   epic-1: in-progress
-  1-1-photo-permission-grant: backlog
-  1-2-photo-grid-view: backlog
-  1-3-full-screen-photo-view: backlog
+  1-1-photo-permission-grant: done
+  1-2-photo-grid-view: done
+  1-3-full-screen-photo-view: done
   1-4-photo-sharing: backlog
   1-5-video-grid-view-playback: backlog
   1-6-video-sharing: backlog
