@@ -3,7 +3,10 @@ package com.retrivai.app.ui.gallery
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.retrivai.app.domain.model.Photo
+import com.retrivai.app.domain.model.Video
 import com.retrivai.app.domain.usecase.photo.GetPhotosUseCase
+import com.retrivai.app.domain.usecase.video.GetVideosUseCase
 import com.retrivai.app.util.PermissionUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,7 +19,8 @@ import javax.inject.Inject
 @HiltViewModel
 class GalleryViewModel @Inject constructor(
     application: Application,
-    private val getPhotosUseCase: GetPhotosUseCase
+    private val getPhotosUseCase: GetPhotosUseCase,
+    private val getVideosUseCase: GetVideosUseCase
 ) : AndroidViewModel(application) {
 
     private val _uiState = MutableStateFlow(GalleryUiState())
@@ -32,6 +36,7 @@ class GalleryViewModel @Inject constructor(
             _uiState.update { it.copy(hasPermission = hasPermission, isLoading = false) }
             if (hasPermission) {
                 loadPhotos()
+                loadVideos()
             }
         }
     }
@@ -49,6 +54,16 @@ class GalleryViewModel @Inject constructor(
         }
     }
 
+    fun loadVideos() {
+        viewModelScope.launch {
+            getVideosUseCase()
+                .onSuccess { videos ->
+                    _uiState.update { it.copy(videos = videos) }
+                }
+                .onFailure { /* Videos are optional, don't show error */ }
+        }
+    }
+
     fun refresh() {
         viewModelScope.launch {
             _uiState.update { it.copy(isRefreshing = true, error = null) }
@@ -59,15 +74,68 @@ class GalleryViewModel @Inject constructor(
                 .onFailure { error ->
                     _uiState.update { it.copy(error = error.message, isRefreshing = false) }
                 }
+            getVideosUseCase()
+                .onSuccess { videos ->
+                    _uiState.update { it.copy(videos = videos) }
+                }
         }
     }
 
     fun onPermissionGranted() {
         _uiState.update { it.copy(hasPermission = true, permissionDeniedPermanently = false) }
         loadPhotos()
+        loadVideos()
     }
 
     fun onPermissionDenied(permanent: Boolean = false) {
         _uiState.update { it.copy(hasPermission = false, permissionDeniedPermanently = permanent) }
+    }
+
+    fun enterSelectionMode(photoId: Long) {
+        _uiState.update {
+            it.copy(
+                isSelectionMode = true,
+                selectedPhotoIds = setOf(photoId)
+            )
+        }
+    }
+
+    fun toggleSelection(photoId: Long) {
+        _uiState.update { state ->
+            val newSelection = if (state.selectedPhotoIds.contains(photoId)) {
+                state.selectedPhotoIds - photoId
+            } else {
+                state.selectedPhotoIds + photoId
+            }
+            state.copy(
+                selectedPhotoIds = newSelection,
+                isSelectionMode = newSelection.isNotEmpty()
+            )
+        }
+    }
+
+    fun clearSelection() {
+        _uiState.update {
+            it.copy(
+                isSelectionMode = false,
+                selectedPhotoIds = emptySet()
+            )
+        }
+    }
+
+    fun getSelectedPhotos(): List<Photo> {
+        return _uiState.value.photos.filter { it.id in _uiState.value.selectedPhotoIds }
+    }
+
+    fun playVideo(videoId: Long) {
+        _uiState.update { it.copy(playingVideoId = videoId) }
+    }
+
+    fun stopVideo() {
+        _uiState.update { it.copy(playingVideoId = null) }
+    }
+
+    fun toggleVideoMute() {
+        _uiState.update { it.copy(isVideoMuted = !it.isVideoMuted) }
     }
 }
