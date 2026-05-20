@@ -8,6 +8,7 @@ import com.retrivai.app.domain.model.Video
 import com.retrivai.app.domain.usecase.photo.GetPhotosUseCase
 import com.retrivai.app.domain.usecase.video.GetVideosUseCase
 import com.retrivai.app.util.PermissionUtils
+import com.retrivai.app.worker.IndexingManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -20,8 +21,11 @@ import javax.inject.Inject
 class GalleryViewModel @Inject constructor(
     application: Application,
     private val getPhotosUseCase: GetPhotosUseCase,
-    private val getVideosUseCase: GetVideosUseCase
+    private val getVideosUseCase: GetVideosUseCase,
+    private val indexingManager: IndexingManager
 ) : AndroidViewModel(application) {
+
+    private var hasStartedIndexing = false
 
     private val _uiState = MutableStateFlow(GalleryUiState())
     val uiState: StateFlow<GalleryUiState> = _uiState.asStateFlow()
@@ -37,6 +41,7 @@ class GalleryViewModel @Inject constructor(
             if (hasPermission) {
                 loadPhotos()
                 loadVideos()
+                startIndexing()
             }
         }
     }
@@ -85,6 +90,7 @@ class GalleryViewModel @Inject constructor(
         _uiState.update { it.copy(hasPermission = true, permissionDeniedPermanently = false) }
         loadPhotos()
         loadVideos()
+        startIndexing()
     }
 
     fun onPermissionDenied(permanent: Boolean = false) {
@@ -137,5 +143,12 @@ class GalleryViewModel @Inject constructor(
 
     fun toggleVideoMute() {
         _uiState.update { it.copy(isVideoMuted = !it.isVideoMuted) }
+    }
+
+    private fun startIndexing() {
+        if (hasStartedIndexing) return
+        hasStartedIndexing = true
+        indexingManager.schedulePeriodicIndexing()
+        indexingManager.startImmediateIndexing()
     }
 }

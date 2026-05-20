@@ -24,7 +24,7 @@
 #   - done: Retrospective has been completed
 
 generated: 2026-04-20
-last_updated: 2026-04-20
+last_updated: 2026-05-21
 project: RetrivAI
 project_key: NOKEY
 tracking_system: file-system
@@ -42,58 +42,58 @@ development_status:
   epic-1-retrospective: optional
 
   # Epic 2: On-Device AI Indexing
-  epic-2: backlog
-  2-1-background-photo-indexing: backlog
-  2-2-photo-tagging-with-ai: backlog
-  2-3-video-tagging-with-ai: backlog
-  2-4-face-recognition: backlog
-  2-5-indexing-progress-display: backlog
-  2-6-indexing-configuration: backlog
+  epic-2: done
+  2-1-background-photo-indexing: done
+  2-2-photo-tagging-with-ai: done
+  2-3-video-tagging-with-ai: done
+  2-4-face-recognition: done
+  2-5-indexing-progress-display: done
+  2-6-indexing-configuration: done
   epic-2-retrospective: optional
 
   # Epic 3: Natural Language Semantic Search
-  epic-3: backlog
-  3-1-natural-language-search-input: backlog
-  3-2-semantic-search-results: backlog
-  3-3-search-by-person-or-pet-name: backlog
-  3-4-search-results-with-relevance-indicator: backlog
+  epic-3: done
+  3-1-natural-language-search-input: done
+  3-2-semantic-search-results: done
+  3-3-search-by-person-or-pet-name: done
+  3-4-search-results-with-relevance-indicator: done
   epic-3-retrospective: optional
 
   # Epic 4: Face & Object Recognition & Naming
-  epic-4: backlog
-  4-1-name-identified-faces: backlog
-  4-2-name-identified-pets-and-objects: backlog
-  4-3-manage-named-people-and-pets: backlog
+  epic-4: done
+  4-1-name-identified-faces: done
+  4-2-name-identified-pets-and-objects: done
+  4-3-manage-named-people-and-pets: done
   epic-4-retrospective: optional
 
   # Epic 5: Album Organization & Discovery
-  epic-5: backlog
-  5-1-ai-suggested-albums: backlog
-  5-2-view-system-albums: backlog
-  5-3-browse-by-people-places-events: backlog
+  epic-5: done
+  5-1-ai-suggested-albums: done
+  5-2-view-system-albums: done
+  5-3-browse-by-people-places-events: done
   epic-5-retrospective: optional
 
   # Epic 6: Privacy Dashboard & Verification
-  epic-6: backlog
-  6-1-privacy-dashboard-display: backlog
-  6-2-real-time-cloud-call-counter: backlog
-  6-3-on-device-processing-only: backlog
+  epic-6: done
+  6-1-privacy-dashboard-display: done
+  6-2-real-time-cloud-call-counter: done
+  6-3-on-device-processing-only: done
   epic-6-retrospective: optional
 
   # Epic 7: Adaptive Model Management
-  epic-7: backlog
-  7-1-device-ram-detection: backlog
-  7-2-automatic-model-selection: backlog
-  7-3-manual-model-switching: backlog
-  7-4-model-download-management: backlog
+  epic-7: done
+  7-1-device-ram-detection: done
+  7-2-automatic-model-selection: done
+  7-3-manual-model-switching: done
+  7-4-model-download-management: done
   epic-7-retrospective: optional
 
   # Epic 8: Settings & Customization
-  epic-8: backlog
-  8-1-default-search-model-configuration: backlog
-  8-2-auto-album-suggestions-toggle: backlog
-  8-3-grid-view-density-customization: backlog
-  8-4-clear-ai-index-and-re-index: backlog
-  8-5-notification-preferences: backlog
-  8-6-face-recognition-toggle: backlog
+  epic-8: done
+  8-1-default-search-model-configuration: done
+  8-2-auto-album-suggestions-toggle: done
+  8-3-grid-view-density-customization: done
+  8-4-clear-ai-index-and-re-index: done
+  8-5-notification-preferences: done
+  8-6-face-recognition-toggle: done
   epic-8-retrospective: optional
